@@ -1,22 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Tab = props => {
-  /* Using your props, determine if the `tab` prop matches the `selectedTab` prop, 
-      if they match, the className should be: 'tab active-tab', 
-      if it is not it should just be 'tab'*/
+const Tab = ({ selectTabHandler, selected, tab }) => {
+  /* Using your props, determine if this tab is selected, if it is, the className 
+    should be: 'tab active-tab', if it is not it should just be 'tab' */
+  const selectedClass = 'tab';
+  const activeTab = 'active-tab';
   return (
     <div
-      className={''}
-      onClick={() => {
-        /* Replace this dummy click handler function with your selectTabHandler function from props 
-         you'll need to pass the `tab` in as an argument to this handler. */
-      }}
+      className={` ${selectedClass} ${selected ? activeTab : ''}`}
+      onClick={selectTabHandler(tab)}
     >
-      {props.tab.toUpperCase()}
+      {tab.toUpperCase()}
     </div>
   );
 };
 
 // Make sure you include PropTypes on your props.
+Tab.propTypes = {
+  selectedClass: PropTypes.string,
+  activeTab: PropTypes.string,
+};
 
 export default Tab;
